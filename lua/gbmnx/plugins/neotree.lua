@@ -19,13 +19,14 @@ return {
 				},
 			},
 			window = {
+                width = 45,
 				mappings = {
 					["<BS>"] = "close_node",
 				},
 			},
 		})
 
-		vim.keymap.set("n", "<C-p>", ":Neotree position=current toggle=true<CR>", { silent = true, noremap = true })
+		vim.keymap.set("n", "<C-p>", ":Neotree position=left toggle=true<CR>", { silent = true, noremap = true })
 		vim.keymap.set("n", "<leader>eg", ":Neotree position=float source=git_status toggle=true<CR>", { silent = true, noremap = true })
 	end,
 }

@@ -4,21 +4,22 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local harpoon = require("harpoon")
+		local map = require("gbmnx.utils.map").map
 
 		-- REQUIRED
 		harpoon:setup()
 		-- REQUIRED
 
-		vim.keymap.set("n", "<leader>a", function()
+		map("n", "<leader>a", function()
 			harpoon:list():add()
 		end)
-		vim.keymap.set("n", "H", function()
+
+		map("n", "H", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end)
 
-		-- Set <space>1..<space>5 be my shortcuts to moving to the files
 		for _, idx in ipairs({ 1, 2, 3, 4, 5 }) do
-			vim.keymap.set("n", string.format("<space>%d", idx), function()
+			map("n", string.format("<leader>%d", idx), function()
 				harpoon:list():select(idx)
 			end)
 		end

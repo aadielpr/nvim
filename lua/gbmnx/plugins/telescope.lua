@@ -5,28 +5,33 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"echasnovski/mini.icons",
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
+		local map = require("gbmnx.utils.map").map
 
 		telescope.setup({
 			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({ initial_mode = "normal" }),
+				},
 				fzf = {
-					fuzzy = false, -- false will only do exact matching
-					override_generic_sorter = true, -- override the generic sorter
-					override_file_sorter = true, -- override the file sorter
-					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
 				},
 			},
 			defaults = {
 				layout_strategy = "flex",
 				layout_config = {
-					horizontal = { preview_cutoff = 80, preview_width = 0.55 },
+					horizontal = { preview_cutoff = 80, preview_width = 0.5 },
 					prompt_position = "top",
-					-- width = 0.87,
-					-- height = 0.80,
+					width = 0.6,
+					height = 0.6,
 				},
 				sorting_strategy = "ascending",
 				mappings = {
@@ -41,25 +46,37 @@ return {
 				initial_mode = "insert",
 				file_ignore_patterns = { "node_modules" },
 			},
+			pickers = {
+				find_files = { theme = "dropdown", previewer = true },
+				live_grep = { theme = "dropdown", previewer = true },
+				buffers = { theme = "dropdown", previewer = true },
+				help_tags = { theme = "dropdown", previewer = true },
+				git_files = { theme = "dropdown", previewer = true },
+				grep_string = { theme = "dropdown", previewer = true },
+				lsp_references = { theme = "dropdown", previewer = true },
+				lsp_definitions = { theme = "dropdown", previewer = true },
+				lsp_implementations = { theme = "dropdown", previewer = true },
+				diagnostics = { theme = "dropdown", previewer = true },
+			},
 		})
 
 		telescope.load_extension("fzf")
+		telescope.load_extension("ui-select")
 
-		local opt = { noremap = true, silent = true }
-
-		vim.keymap.set("n", "ff", builtin.find_files, opt)
-		vim.keymap.set("n", "ft", builtin.git_files, {})
-		vim.keymap.set("n", "fb", builtin.buffers, opt)
-		vim.keymap.set("n", "fg", builtin.live_grep, opt)
-		vim.keymap.set("n", "<leader>pws", function()
+		map("n", "<leader>ff", builtin.find_files)
+		map("n", "<leader>ft", builtin.git_files, {})
+		map("n", "<leader>fb", builtin.buffers)
+		map("n", "<leader>fg", builtin.live_grep)
+		map("n", "<leader>fd", builtin.diagnostics)
+		map("n", "<leader>pws", function()
 			local word = vim.fn.expand("<cword>")
 			builtin.grep_string({ search = word })
 		end)
-		vim.keymap.set("n", "<leader>pWs", function()
+		map("n", "<leader>pWs", function()
 			local word = vim.fn.expand("<cWORD>")
 			builtin.grep_string({ search = word })
 		end)
-		vim.keymap.set("n", "<leader>ps", function()
+		map("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end)
 	end,

@@ -5,29 +5,26 @@ return {
 	opts = {
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns
-
-			local function map(mode, l, r, opts)
-				opts = opts or {}
-				opts.buffer = bufnr
-				vim.keymap.set(mode, l, r, opts)
-			end
+			local map = require("gbmnx.utils.map").map
+			local opts = { buffer = bufnr }
 
 			-- Navigation
-			map("n", "]c", function()
+			map("n", ".c", function()
 				if vim.wo.diff then
-					return "]c"
+					return ".c"
 				end
 				vim.schedule(function()
 					gs.next_hunk()
 				end)
 				return "<Ignore>"
 			end, {
+				buffer = bufnr,
 				expr = true,
 			})
 
-			map("n", "[c", function()
+			map("n", ",c", function()
 				if vim.wo.diff then
-					return "[c"
+					return ",c"
 				end
 				vim.schedule(function()
 					gs.prev_hunk()
@@ -35,29 +32,20 @@ return {
 				return "<Ignore>"
 			end, {
 				expr = true,
+				buffer = bufnr,
 			})
 
-			-- Actions
-			-- map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-			-- map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-			-- map('n', '<leader>hS', gs.stage_buffer)
-			-- map('n', '<leader>hu', gs.undo_stage_hunk)
-			-- map('n', '<leader>hR', gs.reset_buffer)
-			map("n", "gp", gs.preview_hunk)
+			map("n", "gp", gs.preview_hunk, opts)
 			map("n", "gb", function()
 				gs.blame_line({
 					full = true,
 				})
-			end)
-			map("n", "gtb", gs.toggle_current_line_blame)
-			map("n", "ghd", gs.diffthis)
+			end, opts)
+			map("n", "gtb", gs.toggle_current_line_blame, opts)
+			map("n", "ghd", gs.diffthis, opts)
 			map("n", "ghD", function()
 				gs.diffthis("~")
-			end)
-			-- map('n', '<leader>td', gs.toggle_deleted)
-
-			-- Text object
-			map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+			end, opts)
 		end,
 	},
 }

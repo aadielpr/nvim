@@ -1,6 +1,8 @@
 return {
 	"mbbill/undotree",
 	config = function()
-		vim.keymap.set("n", "<leader>w", vim.cmd.UndotreeToggle)
+        local map = require("gbmnx.utils.map").map
+
+		map("n", "<leader>w", vim.cmd.UndotreeToggle)
 	end,
 }

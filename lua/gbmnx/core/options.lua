@@ -1,4 +1,9 @@
-vim.opt.nu = true
+local opt = vim.opt
+local g = vim.g
+
+g.mapleader = " "
+
+opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = false
 
@@ -29,3 +34,12 @@ vim.opt.updatetime = 50
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldenable = true
+
+-- Don't have `o` add a comment
+vim.opt.formatoptions:remove "o"

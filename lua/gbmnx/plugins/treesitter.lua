@@ -13,20 +13,11 @@ return {
 		treesitter.setup({
 			ensure_installed = { "lua", "tsx", "html", "typescript", "json", "javascript", "go" },
 			auto_install = false,
-
 			sync_install = false,
-			highlight = {
-				enable = true,
-				disable = {},
-			},
-			indent = {
-				enable = true,
-				disable = {},
-			},
-			autotag = {
-				enable = true,
-				filetypes = { "html", "xml" },
-			},
+			highlight = { enable = true, disable = {} },
+			indent = { enable = true, disable = {} },
+			autotag = { enable = true, filetypes = { "html", "xml" } },
+			fold = { enable = true },
 		})
 	end,
 }

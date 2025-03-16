@@ -11,37 +11,6 @@ return {
 				palette.border_fg = palette.gray0
 				palette.border_bg = palette.bg
 			end,
-			on_highlight = function(highlights, palette)
-				highlights.TelescopePromptTitle = {
-					fg = palette.black2,
-					bg = palette.black2,
-				}
-
-				highlights.TelescopePromptBorder = {
-					bg = palette.black2,
-					fg = palette.black2,
-				}
-
-				highlights.TelescopePreviewTitle = {
-					fg = palette.black1,
-					bg = palette.black1,
-				}
-
-				highlights.TelescopeResultsTitle = {
-					fg = palette.black1,
-					bg = palette.black1,
-				}
-
-				highlights.TelescopeResultsBorder = {
-					fg = palette.black1,
-					bg = palette.black1,
-				}
-
-				highlights.TelescopePreviewBorder = {
-					fg = palette.black1,
-					bg = palette.black1,
-				}
-			end,
 			bold_keywords = true,
 			italic_comments = true,
 			transparent = {
@@ -59,7 +28,7 @@ return {
 			},
 			telescope = {
 				-- Available styles: `classic`, `flat`.
-				style = "flat",
+				style = "classic",
 			},
 			ts_context = {
 				dark_background = true,

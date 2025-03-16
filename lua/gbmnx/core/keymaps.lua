@@ -1,30 +1,44 @@
+local map = require("gbmnx.utils.map").map
 -- Split window
-vim.keymap.set("n", "ss", "<Cmd>split<CR><C-w>w")
-vim.keymap.set("n", "sv", "<Cmd>vsplit<CR><C-w>w")
+map("n", "ss", "<Cmd>split<CR><C-w>w")
+map("n", "sv", "<Cmd>vsplit<CR><C-w>w")
+-- These mappings control the size of splits (height/width)
+map("n", "<M-,>", "<c-w>5<")
+map("n", "<M-.>", "<c-w>5>")
+map("n", "<M-t>", "<C-W>+")
+map("n", "<M-s>", "<C-W>-")
+-- Move between window
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
+map("n", "<C-h>", "<C-w>h")
 
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-
-vim.keymap.set("n", "Q", "")
-vim.keymap.set("n", "<F1>", "")
-vim.keymap.set("i", "<F1>", "")
-vim.keymap.set("n", "<leader>v", ":noh<CR>")
+map("n", "Q", "")
+map("n", "<F1>", "")
+map("i", "<F1>", "")
+map("n", "<leader>vh", ":noh<CR>")
 
 -- Copy, Cut, Paste
-vim.keymap.set("", "y", '"+y')
-vim.keymap.set("", "<leader>x", '"+d')
-vim.keymap.set("", "p", '"+p')
+map({ "n", "v" }, "y", '"+y')
+map("n", "Y", '"+Y')
+map({ "n", "v" }, "x", '"+x')
 
-vim.keymap.set("n", "sj", ":m+<CR>")
-vim.keymap.set("n", "sk", ":m-2<CR>")
+map({ "n", "v" }, "p", '"+p')
+map({ "n", "v" }, "P", '"+P')
+
+map("n", "sj", ":m+<CR>")
+map("n", "sk", ":m-2<CR>")
+map("v", "sj", ":m '>+1<CR>gv=gv")
+map("v", "sk", ":m '<-2<CR>gv=gv")
 
 -- go to normal mode when pressing CTRL+C
-vim.keymap.set("i", "<C-c>", "<Esc>")
+map("i", "<C-c>", "<Esc>")
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+map("n", "<n-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- search word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("v", "<leader>s", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("v", "<leader>s", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
+
+-- fold
+map("n", ",f", "za")

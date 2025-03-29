@@ -39,6 +39,7 @@ map("n", "<n-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- search word
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("v", "<leader>s", [["hy:%s/<C-r>h/<C-r>h/gI<Left><Left><left>]])
+map("n", "<leader>i", "<cmd>Inspect<CR>")
 
 -- fold
 map("n", ",f", "za")

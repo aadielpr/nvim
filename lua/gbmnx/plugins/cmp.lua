@@ -17,7 +17,6 @@ return {
 		local cmp = require("cmp")
 		local MiniIcons = require("mini.icons")
 		local npairs = require("nvim-autopairs")
-		local border = require("gbmnx.utils.border")
 
 		vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
@@ -69,14 +68,8 @@ return {
 				end,
 			},
 			window = {
-				completion = cmp.config.window.bordered({
-					winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-					border = border.border_chars_none,
-				}),
-				documentation = cmp.config.window.bordered({
-					winhighlight = "FloatBorder:FloatBorder",
-					border = border.border_chars_none,
-				}),
+				-- completion = cmp.config.window.bordered(),
+				-- documentation = cmp.config.window.bordered(),
 			},
 			mapping = {
 				["<Esc>"] = cmp.mapping.close(),
@@ -138,9 +131,6 @@ return {
 					cmp.config.compare.recently_used,
 					cmp.config.compare.locality,
 					cmp.config.compare.kind,
-					cmp.config.compare.sort_text,
-					cmp.config.compare.length,
-					cmp.config.compare.order,
 				},
 			},
 		})

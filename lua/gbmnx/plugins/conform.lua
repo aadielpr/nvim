@@ -8,6 +8,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
+				python = { "black" },
 				javascript = { "prettierd", stop_after_first = true },
 				typescript = { "prettierd", stop_after_first = true },
 				typescriptreact = { "prettierd", stop_after_first = true },
@@ -15,6 +16,11 @@ return {
 				markdown = { "prettierd", stop_after_first = true },
 				json = { "prettierd", stop_after_first = true },
 				go = { "goimports", "gofmt", "golines" },
+			},
+			formatters = {
+				black = {
+					prepend_args = { "--fast" },
+				},
 			},
 		})
 

@@ -22,7 +22,6 @@ map("n", "<leader>vh", ":noh<CR>")
 map({ "n", "v" }, "y", '"+y')
 map("n", "Y", '"+Y')
 map({ "n", "v" }, "x", '"+x')
-map({ "n", "v" }, "yy", '"+0y$')
 map({ "n", "v" }, "D", '"+D')
 
 map({ "n", "v" }, "p", '"+p')

@@ -17,26 +17,40 @@ vim.api.nvim_create_autocmd("TermOpen", {
 map("t", "<esc><esc>", "<c-\\><c-n>")
 
 -- Store the terminal window ID
+local terminal_buf = nil
 local terminal_win = nil
 
--- Toggle terminal function
 local function toggle_terminal()
+	-- If window exists → hide it
 	if terminal_win and vim.api.nvim_win_is_valid(terminal_win) then
-		-- Hide terminal by closing the window, but keeping the buffer
 		vim.api.nvim_win_hide(terminal_win)
 		terminal_win = nil
-	else
-		-- Open a new terminal or reuse an existing one
+		return
+	end
+
+	-- Create buffer if it doesn't exist
+	if not terminal_buf or not vim.api.nvim_buf_is_valid(terminal_buf) then
 		vim.cmd("new")
 		vim.cmd("wincmd J")
 		vim.api.nvim_win_set_height(0, 12)
 		vim.wo.winfixheight = true
-		vim.cmd("term")
 
-		-- Store the terminal window ID
-		terminal_win = vim.api.nvim_get_current_win()
-		vim.cmd("startinsert!")
+		vim.cmd("term")
+		terminal_buf = vim.api.nvim_get_current_buf()
+	else
+		-- Reopen existing terminal buffer
+		vim.cmd("new")
+		vim.cmd("wincmd J")
+		vim.api.nvim_win_set_height(0, 12)
+		vim.wo.winfixheight = true
+
+		vim.api.nvim_win_set_buf(0, terminal_buf)
 	end
+
+	terminal_win = vim.api.nvim_get_current_win()
+
+	-- Always enter terminal mode
+	vim.cmd("startinsert!")
 end
 
 -- Open a terminal at the bottom of the screen with a fixed height.

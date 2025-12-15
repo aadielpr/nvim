@@ -4,16 +4,6 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			local colors = {
-				orange = { base = "#D08770", bright = "#D79784", dim = "#CB775D" },
-				red = { base = "#BF616A", bright = "#C5727A", dim = "#B74E58" },
-				yellow = { base = "#EBCB8B", bright = "#EFD49F", dim = "#E7C173" },
-				green = { base = "#A3BE8C", bright = "#B1C89D", dim = "#97B67C" },
-				magenta = { base = "#B48EAD", bright = "#BE9DB8", dim = "#A97EA1" },
-				cyan = { base = "#8FBCBB", bright = "#9FC6C5", dim = "#80B3B2" },
-				blue = { base = "#5E81AC", bright = "#81A1C1", dim = "#88C0D0" },
-			}
-
 			require("vesper").setup({
 				transparent = false, -- Boolean: Sets the background to transparent
 				italics = {
@@ -23,21 +13,67 @@ return {
 					strings = false, -- Boolean: Italicizes strings
 					variables = false, -- Boolean: Italicizes variables
 				},
-				overrides = {
-					["@variable.builtin"] = { fg = colors.orange.base },
-					["@keyword.exception"] = { fg = colors.red.base },
-					["@keyword.return"] = { fg = colors.red.base },
-					["@keyword.coroutine"] = { fg = colors.blue.base },
-					["@keyword.import"] = { fg = colors.red.base },
-					["@keyword.type"] = { fg = colors.orange.base },
-					["@keyword.modifier"] = { fg = colors.magenta.bright },
-					["@keyword"] = { fg = colors.blue.base },
-					["@constructor"] = { fg = colors.orange.base },
-				}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+				overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
 				palette_overrides = {},
 			})
 
 			vim.cmd("colorscheme vesper")
+		end,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				variant = "moon", -- auto, main, moon, or dawn
+				dark_variant = "moon", -- main, moon, or dawn
+				dim_inactive_windows = false,
+				extend_background_behind_borders = true,
+
+				enable = {
+					terminal = true,
+					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+					migrations = true, -- Handle deprecated options automatically
+				},
+
+				styles = {
+					bold = true,
+					italic = true,
+					transparency = false,
+				},
+
+				palette = {
+					-- Override the builtin palette per variant
+					main = {
+						base = "#101010",
+						surface = "#101010",
+						-- overlay = "#101010",
+					},
+					moon = {
+						base = "#101010",
+						surface = "#101010",
+						-- overlay = "#363738",
+					},
+				},
+			})
+
+			-- vim.cmd("colorscheme rose-pine")
+		end,
+	},
+	{
+		"aktersnurra/no-clown-fiesta.nvim",
+		priority = 1000,
+		lazy = false,
+		config = function()
+			-- local plugin = require("no-clown-fiesta")
+			-- return plugin.load({
+			-- 	theme = "dark",
+			-- 	styles = {
+			-- 		type = { bold = true },
+			-- 		lsp = { underline = false },
+			-- 		match_paren = { underline = true },
+			-- 	},
+			-- })
 		end,
 	},
 }

@@ -2,7 +2,6 @@ return {
 	{
 		"stevearc/oil.nvim",
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
 		lazy = false,
 		config = function()
 			require("oil").setup({
@@ -18,49 +17,22 @@ return {
 					["g\\"] = { "actions.toggle_trash", mode = "n" },
 				},
 				use_default_keymaps = false,
-				win_options = {
-					signcolumn = "yes:2",
+				delete_to_trash = true,
+				view_options = {
+					show_hidden = true,
+				},
+				float = {
+					-- Padding around the floating window
+					padding = 2,
+					-- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+					max_width = 0.4,
+					max_height = 0.8,
 				},
 			})
 
 			vim.keymap.set("n", "<C-p>", function()
 				require("oil").toggle_float()
 			end)
-		end,
-	},
-	{
-		"refractalize/oil-git-status.nvim",
-		dependencies = {
-			"stevearc/oil.nvim",
-		},
-		config = function()
-			require("oil-git-status").setup({
-				show_ignored = true,
-				symbols = {
-					index = {
-						["!"] = "", -- Ignored
-						["?"] = "", -- Untracked
-						["A"] = "󱇬", -- Added
-						["C"] = "", -- Copied
-						["D"] = "", -- Deleted
-						["M"] = "", -- Modified
-						["R"] = "", -- Renamed
-						["T"] = "", -- Type Changed
-						["U"] = "", -- Unmerged
-					},
-					working_tree = {
-						["!"] = "", -- Ignored
-						["?"] = "", -- Untracked
-						["A"] = "󱇬", -- Added
-						["C"] = "", -- Copied
-						["D"] = "", -- Deleted
-						["M"] = "", -- Modified
-						["R"] = "", -- Renamed
-						["T"] = "", -- Type Changed
-						["U"] = "", -- Unmerged
-					},
-				},
-			})
 		end,
 	},
 }

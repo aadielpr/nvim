@@ -10,7 +10,8 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local map = require("gbmnx.utils.map").map
 
-		local function on_attach(_, bufnr)
+		local function on_attach(client, bufnr)
+            client.server_capabilities.semanticTokensProvider = nil
 			local opts = { noremap = true, silent = true, buffer = bufnr }
 
 			map("n", "gD", vim.lsp.buf.declaration, opts)

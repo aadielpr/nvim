@@ -35,8 +35,10 @@ local function toggle_terminal()
 
 		-- Store the terminal window ID
 		terminal_win = vim.api.nvim_get_current_win()
+		vim.cmd("startinsert!")
 	end
 end
 
 -- Open a terminal at the bottom of the screen with a fixed height.
-map("n", "<leader>t", toggle_terminal)
+map("n", "<C-t>", toggle_terminal)
+map("t", "<C-t>", toggle_terminal)

@@ -56,3 +56,8 @@ end
 -- Open a terminal at the bottom of the screen with a fixed height.
 map("n", "<C-t>", toggle_terminal)
 map("t", "<C-t>", toggle_terminal)
+map("t", "<M-t>", "<C-\\><C-n><C-w>+")
+map("t", "<M-s>", "<C-\\><C-n><C-w>-")
+map("t", "<M-,>", "<C-\\><C-n><C-w><")
+map("t", "<M-.>", "<C-\\><C-n><C-w>>")
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", { silent = true })

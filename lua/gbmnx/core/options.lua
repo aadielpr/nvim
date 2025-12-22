@@ -42,4 +42,4 @@ vim.opt.foldlevel = 99
 vim.opt.foldenable = true
 
 -- Don't have `o` add a comment
-vim.opt.formatoptions:remove "o"
+vim.opt.formatoptions:remove("o")

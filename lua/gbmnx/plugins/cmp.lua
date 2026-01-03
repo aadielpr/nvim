@@ -16,11 +16,11 @@ return {
 		local ls = require("luasnip")
 		local cmp = require("cmp")
 		local MiniIcons = require("mini.icons")
-		local npairs = require("nvim-autopairs")
+		-- local npairs = require("nvim-autopairs")
 
 		vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
-		npairs.setup({ enable_check_bracket_line = false })
+		-- npairs.setup({ enable_check_bracket_line = false })
 
 		local s = ls.snippet
 		local t = ls.text_node

@@ -13,7 +13,10 @@ return {
 					strings = false, -- Boolean: Italicizes strings
 					variables = false, -- Boolean: Italicizes variables
 				},
-				overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+			overrides = {
+				CursorLine = { bg = "#2a2a2a" },
+				TelescopeSelection = { bg = "#2a2a2a" },
+			}, -- A dictionary of group names, can be a function returning a dictionary or a table.
 				palette_overrides = {},
 			})
 
@@ -58,22 +61,6 @@ return {
 			})
 
 			-- vim.cmd("colorscheme rose-pine")
-		end,
-	},
-	{
-		"aktersnurra/no-clown-fiesta.nvim",
-		priority = 1000,
-		lazy = false,
-		config = function()
-			-- local plugin = require("no-clown-fiesta")
-			-- return plugin.load({
-			-- 	theme = "dark",
-			-- 	styles = {
-			-- 		type = { bold = true },
-			-- 		lsp = { underline = false },
-			-- 		match_paren = { underline = true },
-			-- 	},
-			-- })
 		end,
 	},
 }

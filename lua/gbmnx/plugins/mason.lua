@@ -30,8 +30,7 @@ return {
 				"gopls",
 				"pyright",
 				"ruff",
-				"clangd",
-				"volar",
+				"clangd"
 			},
 		})
 

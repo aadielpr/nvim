@@ -64,7 +64,8 @@ return {
 		telescope.load_extension("ui-select")
 
 		map("n", "<leader>ff", builtin.find_files)
-		map("n", "<leader>ft", builtin.git_files, {})
+		map("n", "<leader>ft", builtin.git_files)
+		map("n", "<leader>fs", builtin.git_status)
 		map("n", "<leader>fb", builtin.buffers)
 		map("n", "<leader>fg", builtin.live_grep)
 		map("n", "<leader>fd", builtin.diagnostics)
